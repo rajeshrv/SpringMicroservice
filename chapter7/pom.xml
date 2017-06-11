@@ -5,16 +5,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.brownfield</groupId>
-  <artifactId>pss-parent-7</artifactId>
+  <artifactId>pss-parent</artifactId>
   <version>1.0</version>
   <packaging>pom</packaging>
 
   <modules>
+    <module>chapter7.book</module>
+    <module>chapter7.book-apigateway</module>
     <module>chapter7.search</module>
     <module>chapter7.search-apigateway</module>
+    <module>chapter7.fares</module>
+    <module>chapter7.fares-apigateway</module>
+    <module>chapter7.checkin</module>
+    <module>chapter7.checkin-apigateway</module>
     <module>chapter7.configserver</module>
     <module>chapter7.eurekaserver</module>
-    <module>chapter7.hystrixdashboard</module>
-    <module>chapter7.turbineserver</module>
+    <module>chapter7.website</module>
   </modules>
 </project>

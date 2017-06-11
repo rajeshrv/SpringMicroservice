@@ -6,14 +6,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.stereotype.Component;
 
 import com.brownfield.pss.search.controller.SearchQuery;
 import com.brownfield.pss.search.entity.Flight;
 import com.brownfield.pss.search.entity.Inventory;
 import com.brownfield.pss.search.repository.FlightRepository;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Component
 public class SearchComponent {
@@ -25,8 +23,7 @@ public class SearchComponent {
 	public SearchComponent(FlightRepository flightRepository){
 		this.flightRepository = flightRepository;
 	}
-	
-	@HystrixCommand(fallbackMethod = "searchFallback")
+
 	public List<Flight> search(SearchQuery query){
 		List<Flight> flights= flightRepository.findByOriginAndDestinationAndFlightDate(query.getOrigin(),
 																query.getDestination(),
@@ -43,10 +40,6 @@ public class SearchComponent {
 		return searchResult; 
 	}
 
-	public List<Flight> searchFallback(SearchQuery query){
-		return new ArrayList<Flight>();
-	}
-	
 	public void updateInventory(String flightNumber, String flightDate, int inventory) {
 		logger.info("Updating inventory for flight "+ flightNumber + " innventory "+ inventory); 
 		Flight flight = flightRepository.findByFlightNumberAndFlightDate(flightNumber,flightDate);

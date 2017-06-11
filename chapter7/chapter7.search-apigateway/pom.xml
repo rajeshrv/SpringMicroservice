@@ -4,19 +4,28 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.brownfield.pss</groupId>
-	<artifactId>chapter7.search-apigateway</artifactId>
+	<artifactId>search-apigateway</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>chapter7.search-apigateway</name>
 	<description>Demo project for Spring Boot</description>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.3.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.2.RELEASE</version>
+</parent>
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Dalston.SR1</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,16 +34,6 @@
 
 	<dependencies>
 			<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
-		
-		<dependency>
-	  		<groupId>net.logstash.logback</groupId>
-	  		<artifactId>logstash-logback-encoder</artifactId>
-	 		 <version>4.6</version>
-		</dependency>
-	<dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger2</artifactId>
     <version>2.3.1</version>
@@ -44,10 +43,7 @@
     <artifactId>springfox-swagger-ui</artifactId>
     <version>2.3.1</version>
 		</dependency>	
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-hystrix</artifactId>
-		</dependency>		
+		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zuul</artifactId>
@@ -71,17 +67,7 @@
 		</dependency>
 	</dependencies>
 	
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-parent</artifactId>
-				<version>Brixton.M4</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+ 
 	
 	<build>
 		<plugins>
@@ -93,15 +79,16 @@
 	</build>
 	
 	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
+    <repository>
+        <id>spring-snapshots</id>
+        <name>Spring Snapshots</name>
+        <url>https://repo.spring.io/libs-snapshot</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+    
+  			<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
@@ -109,11 +96,13 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-						    <repository>
+				    <repository>
       <id>jcenter-snapshots</id>
       <name>jcenter</name>
       <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
     </repository>
-	</repositories>
+		
+</repositories>
+
 
 </project>

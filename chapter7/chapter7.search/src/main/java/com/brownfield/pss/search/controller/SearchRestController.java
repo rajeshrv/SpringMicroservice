@@ -6,8 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.atomic.LongAdder;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brownfield.pss.search.component.SearchComponent;
 import com.brownfield.pss.search.entity.Flight;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RefreshScope
 @CrossOrigin
 @RestController
 @RequestMapping("/search")
 class SearchRestController {
-	private static final Logger logger = LoggerFactory.getLogger(SearchRestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(SearchComponent.class);
 	TPMCounter tpm = new TPMCounter();
 
 	private SearchComponent searchComponent;
@@ -58,13 +55,6 @@ class SearchRestController {
 		
 		return searchComponent.search(query);
 	}
-	@RequestMapping("/hub")
-	String getHub(HttpServletRequest req){
-		logger.info("Searching for Hub, received from search-apigateway ");
-		return "SFO"; 
-	}
-	
-	
 }
 
 
