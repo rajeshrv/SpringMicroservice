@@ -40,7 +40,6 @@ public class BookingRecord {
 		this.flightDate = flightDate;
 		this.bookingDate = bookingDate;
 		this.fare = fare;
-		this.status = status;
 	}
 
 	
